@@ -1,5 +1,49 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div id="myChart"></div>
 </template>
+
+<script>
+export default {
+  name: "about",
+  data() {
+    return {
+      chartInstance: null,
+    };
+  },
+  mounted() {
+    this.drawLine();
+  },
+  methods: {
+    drawLine() {
+      // 基于准备好的dom，初始化echarts实例
+      this.chartInstance = this.$echarts.init(
+        document.getElementById("myChart")
+      );
+      // 绘制图表
+      this.chartInstance.setOption({
+        title: { text: "在Vue中使用echarts" },
+        tooltip: {},
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20],
+          },
+        ],
+      });
+    },
+  },
+};
+</script>
+
+<style>
+#myChart {
+  width: 500px;
+  height: 500px;
+  border: 1px solid red;
+}
+</style>
