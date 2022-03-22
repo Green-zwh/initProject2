@@ -1,11 +1,15 @@
 <template>
-  <div id="app" ref="app">
+  <div id="app" >
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      <router-link to="/map">About</router-link>
+      <router-link to="/map">地图</router-link>
+      <router-link to="/zj">浙江</router-link>
     </div>
-    <router-view/>
+    <div ref="newCatalog" class="newCatalog">
+      <router-view/>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -28,16 +32,33 @@ export default {
     },
     setScale() {
       this.scale = this.getScale()
-      this.$refs.app.style.setProperty('--scale', this.scale)
+      this.$refs.newCatalog.style.setProperty('--scale', this.scale)
     }
   }
 }
 </script>
 <style>
+*{
+  padding: 0;
+  margin: 0;
+  border: none;
+}
 #app {
+  width: 100vw;
+  height: 100vh;
+  font-family: Alibaba-PuHuiTi-R, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  /* background: url('~assets/images/bg.png'); */
+  background-size: cover;
+  background: tomato;
+  /* border: 1px solid red; */
+}
+.newCatalog {
   --scale: 1;
-  width: 1920PX;
-  height: 1080PX;
+  width: 1920px;
+  height: 1080px;
   background-size: 100% 100%;
   position: absolute;
   transform: scale(var(--scale)) translate(-50%, -50%);
@@ -46,9 +67,6 @@ export default {
   transform-origin: 0 0;
   left: 50%;
   top: 50%;
-  margin: 0;
-  padding: 0;
-
 }
 
 </style>

@@ -12,8 +12,8 @@ Vue.use(ElementUI);
 import server from './axios/services';
 
 // 引入echarts
-let echarts = require('echarts')
-// import echarts from 'echarts'
+// let echarts = require('echarts')
+import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
 Vue.prototype.$server = server;

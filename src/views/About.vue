@@ -7,7 +7,6 @@ export default {
   name: "about",
   data() {
     return {
-      chartInstance: null,
     };
   },
   mounted() {
@@ -16,11 +15,11 @@ export default {
   methods: {
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
-      this.chartInstance = this.$echarts.init(
+      let chartInstance = this.$echarts.init(
         document.getElementById("myChart")
       );
       // 绘制图表
-      this.chartInstance.setOption({
+      chartInstance.setOption({
         title: { text: "在Vue中使用echarts" },
         tooltip: {},
         xAxis: {
