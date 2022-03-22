@@ -6,7 +6,7 @@
 
 import axios from 'axios';
 import baseUrl from './index'
-import router from '../router';
+// import router from '../router';
 import Vue from 'vue'
 let v = new Vue();
 axios.defaults.withCredentials = true;
@@ -16,15 +16,15 @@ axios.defaults.withCredentials = true;
  */
 axios.interceptors.request.use(function (config) {
   // //判断token是否存在
-  if (config.url !== baseUrl + '/user/login' && localStorage.getItem('token')) {
-    config.headers.token = localStorage.getItem('token');  //将token设置成请求头
-  }
-//   console.log(router)
+  // if (config.url !== baseUrl + '/user/login' && localStorage.getItem('token')) {
+  //   config.headers.token = localStorage.getItem('token');  //将token设置成请求头
+  // }
   // let token = router.query.token
   // if (token !== undefined && token !== null && token !== '') {
   //   // localStorage.setItem('token', token);
   //   console.log(token)
   // }
+  // console.log("请求拦截器",config)
 
   // 预处理请求信息（config
   return config;
@@ -38,22 +38,22 @@ axios.interceptors.request.use(function (config) {
  */
 axios.interceptors.response.use(function (response) {
   // 预处理响应数据（response）
-  // console.log('code', response.data.code)
-  if (response.data.code == 402){
-    window.location.href = "#/login"
-    v.$message.error(response.data.msg);
-  } else if (response.data.code == 401 || response.data.code == 403){
+  // console.log('响应拦截器', response)
+  // if (response.data.code == 402){
     // window.location.href = "#/login"
-    window.open('https://dcms.zast.org.cn/#/login', '_self')
-  }
+    // v.$message.error(response.data.msg);
+  // } else if (response.data.code == 401 || response.data.code == 403){
+    // window.location.href = "#/login"
+    // window.open('https://dcms.zast.org.cn/#/login', '_self')
+  // }
   return response;
 }, function (error) {
-  if (error.response !== undefined) {
-    if (error.response.status === 403) { // 错误处理
-      router.push({name: 'login', params: {data: 'axios'}});
-      // window.location.reload();
-    }
-  }
+  // if (error.response !== undefined) {
+  //   if (error.response.status === 403) { // 错误处理
+  //     router.push({name: 'login', params: {data: 'axios'}});
+  //     // window.location.reload();
+  //   }
+  // }
   return Promise.reject(checkStatus(error));
 });
 

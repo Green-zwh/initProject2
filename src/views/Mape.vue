@@ -1,28 +1,24 @@
 <template>
-  <div ref="mape" >
-
+  <div ref="mape">
+    <button @click="send">点击发送请求</button>
   </div>
 </template>
 
 <script>
 export default {
-    name:'mape',
-    data() {
-        return {
-            
-        }
+  name: "mape",
+  data() {
+    return {};
+  },
+  mounted() {},
+  methods: {
+    send() {
+      this.$server.getdata().then(res=>{
+          console.log(res.data)
+      })
     },
-    mounted() {
-        this.$server.getdata().then(res=>{
-            console.log(res)
-        })
-    },
-    methods:{
-
-    }
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -7,6 +7,12 @@ const server = {
             method: 'get'
         })
     },
+    send(data) {
+        return axios(url+'/data', {
+            method: 'post',
+            data
+        }) 
+    }
 };
 
 export default server;
